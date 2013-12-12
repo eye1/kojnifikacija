@@ -26,7 +26,7 @@
 					<p>
 						If you are like me and have a bunch of different altcoins, you
 						probably wonder from time to time: "How much are
-						my coins worth?" <br> <br> I mean, I can see numbers
+						my coins worth?" <br> <br> I mean, you can see numbers
 						going up and down on exchanges, but how much in cash is that? <br> <br> 
 						Well, you've come to the right place. And no, you don't need to create an account.
 					</p>
@@ -63,26 +63,26 @@
 					
 					<div>
 					
-						<table class="table" style="width: 700px;">
+						<table class="table" style="width: 700px; min-height: 290px;">
 							<tr>
-								<th></th>
-								<th align="center">quantity</th>
-								<th align="center">rate per BTC</th>
-								<th align="center">in BTC</th>
-								<th align="center">share</th>
+								<th style="text-align: center; width: 12%;">&nbsp;</th>
+								<th style="text-align: center; width: 23%;">quantity</th>
+								<th style="text-align: center; width: 23%;">rate per BTC</th>
+								<th style="text-align: center; width: 23%;">value in BTC</th>
+								<th style="text-align: center; width: 19%;">share</th>
 							<tr>
 								<c:forEach items="${coins}" var="coin">
 									<tr>
-										<td align="center">${fn:toUpperCase(coin)}</td>
-										<td align="center"><fmt:formatNumber
+										<td align="left">${fn:toUpperCase(coin)}</td>
+										<td align="right" style="padding-right: 35px;"><fmt:formatNumber
 												value="${balance[coin]}" minFractionDigits="5"
 												maxFractionDigits="5" /></td>
-										<td align="center"><fmt:formatNumber
+										<td align="right" style="padding-right: 35px;"><fmt:formatNumber
 												value="${rates[coin]}" minFractionDigits="5"
 												maxFractionDigits="5" /></td>
-										<td align="center"><fmt:formatNumber value="${btc[coin]}"
+										<td align="right" style="padding-right: 35px;"><fmt:formatNumber value="${btc[coin]}"
 												minFractionDigits="5" maxFractionDigits="5" /></td>
-										<td align="center"><fmt:formatNumber
+										<td align="right" style="padding-right: 35px;"><fmt:formatNumber
 												value="${btc[coin]/totalBtc*100}" minFractionDigits="0"
 												maxFractionDigits="0" /> %</td>
 									<tr>
@@ -119,13 +119,6 @@
 							
 					<br>
 					<br>
-					
-					MtGox on the other hand offers<br>
-					<strong><fmt:formatNumber value="${totalUsdMtgox}"
-							minFractionDigits="2" maxFractionDigits="2" /> USD</strong>.
-							
-					<br>
-					<br>					
 							
 					<button type="button" class="btn btn-info" onclick="goBack();">Let's do another one</button>							
 					
@@ -171,6 +164,19 @@
 	{
 		document.location='${pageContext.request.contextPath}/';
 	}	
+	
+	function addAddress()
+	{
+		var address = $('#input-address').val();
+		var coin = $('#button-coin').text();
+		$('#end-addresses').before('<div class="new-address">' + coin + ': ' + address + '</div>');
+		$('#input-address').val('');
+	}
+	
+	$('.a-class').click(function() 
+	{
+		 $('#button-coin').text($(this).text());
+	});
 	
 </script>
 

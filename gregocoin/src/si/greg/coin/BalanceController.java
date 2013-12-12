@@ -46,8 +46,11 @@ public class BalanceController
 			for (String coin : balance.keySet())
 			{
 				double btcValue = balance.get(coin) * rates.get(coin);
-				btc.put(coin, btcValue);
-				totalBtc += btcValue;
+				if (btcValue > 0.0001)
+				{
+					btc.put(coin, btcValue);
+					totalBtc += btcValue;
+				}
 			}
 
 			btc = sortMap(btc);
@@ -62,7 +65,8 @@ public class BalanceController
 			model.addAttribute("totalEurBtce", totalBtc * fiatRates.get("btce-eur"));
 			model.addAttribute("totalUsdBitstamp", totalBtc * fiatRates.get("bitstamp-usd"));
 			model.addAttribute("totalEurBitstamp", totalBtc * fiatRates.get("bitstamp-eur"));
-			model.addAttribute("totalUsdMtgox", totalBtc * fiatRates.get("mtgox-usd"));
+			// model.addAttribute("totalUsdMtgox", totalBtc *
+			// fiatRates.get("mtgox-usd"));
 		}
 		else if (key != null && key.length() > 0)
 		{
