@@ -13,7 +13,8 @@
 	<context:component-scan base-package="si.greg.coin">
 	</context:component-scan>
  
-    <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" /> 
+    <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
+    <mvc:resources mapping="/canvas/**" location="/WEB-INF/canvas/" />  
 	<mvc:annotation-driven />
  
 	<bean
